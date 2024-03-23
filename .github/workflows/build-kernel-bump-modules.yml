@@ -1,19 +1,19 @@
-name: Test
+name: Build Kernel and Bump Modules
 
 on:
   workflow_dispatch:
 
 jobs:
-  run-test:
+  build-kernel:
     runs-on: ubuntu-20.04
     steps:
-      - uses: manjaro-kernels/kernel-action@exp
+      - uses: manjaro-kernels/kernel-action@master
         with:
           gitlab-pw: ${{ secrets.gitlab_server_user }}
           build-mirror: ${{ secrets.BUILD_MIRROR }}
-          branch: unstable
+          branch: "unstable"
           bump-kernel: false
-          bump-modules: repo
+          bump-modules: "repo"
           gpg-key: ${{ secrets.GPG_KEY }}
           gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
           boxit-host: ${{ secrets.BOXIT_HOST }}
